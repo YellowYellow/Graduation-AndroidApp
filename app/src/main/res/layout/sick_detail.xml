@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/sickname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:ems="10"
+        android:text="sadasd" >
+
+        <requestFocus />
+    </TextView>
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sickname"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="26dp"
+        android:src="@drawable/tab_find_frd_pressed" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/imageView1"
+        android:orientation="vertical" >
+
+      
+                 <MultiAutoCompleteTextView
+            android:id="@+id/formfeature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"  />
+
+        <MultiAutoCompleteTextView
+            android:id="@+id/spread"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"  />
+
+        <MultiAutoCompleteTextView
+            android:id="@+id/measures"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:editable="false"
+            android:ems="10" />
+      
+    </LinearLayout>
+
+</RelativeLayout>
