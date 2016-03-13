@@ -23,7 +23,7 @@ public class ChairMapActivity extends AppCompatActivity {
         WebSettings settings = chairs.getSettings();
         settings.setJavaScriptEnabled(true);
 
-        chairs.loadUrl("http://172.17.108.1:80/Netbar/index.php/Main/index.html");
+        chairs.loadUrl("http://172.17.108.1/Graduation-Project/Netbar/index.php/Main/mobile");
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 

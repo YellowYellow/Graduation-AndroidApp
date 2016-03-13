@@ -18,8 +18,10 @@ import org.json.JSONException;
 import android.content.Intent;
 	import android.graphics.Bitmap;
 	import android.os.Bundle;   
-	import android.support.v4.util.LruCache; 
-import android.widget.ImageView;
+	import android.support.v4.util.LruCache;
+	import android.view.View;
+	import android.widget.Button;
+	import android.widget.ImageView;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,11 +43,17 @@ public class Sick_detail extends Activity{
 	  {
 		    super.onCreate(savedInstanceState);
 			setContentView(R.layout.sick_detail);
-			
+
+		  	Button order = (Button)findViewById(R.id.order);
+		  	order.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					startActivity(new Intent(Sick_detail.this,ChairMapActivity.class));
+				}
+			});
+
 			Intent intent=getIntent();  
 	        name=intent.getStringExtra("id");
-			TextView sickname = (TextView)findViewById(R.id.sickname);
-			sickname.setText(name);
 			
 			mVolleyQueue = Volley.newRequestQueue(this);
 
@@ -110,17 +118,24 @@ public class Sick_detail extends Activity{
 			if(response.has("data")) {
 				try {
 					JSONObject bar = response.getJSONObject("data");
-					
-					TextView sickname = (TextView)findViewById(R.id.sickname);
-					MultiAutoCompleteTextView feature = (MultiAutoCompleteTextView)findViewById(R.id.formfeature);
-					 MultiAutoCompleteTextView spread = (MultiAutoCompleteTextView)findViewById(R.id.spread);
-					 MultiAutoCompleteTextView measures = (MultiAutoCompleteTextView)findViewById(R.id.measures);
+
+					TextView barname = (TextView)findViewById(R.id.bar_name);
+					TextView goodbads = (TextView)findViewById(R.id.goodbads);
+					TextView cpu = (TextView)findViewById(R.id.cpu);
+					TextView gpu = (TextView)findViewById(R.id.gpu);
+					TextView ssd = (TextView)findViewById(R.id.ssd);
+					TextView price = (TextView)findViewById(R.id.price);
+					TextView place = (TextView)findViewById(R.id.place);
 					// ImageView tupian = (ImageView)findViewById(R.id.imageView1);
 
 
-					 feature.setText(bar.getString("bar_name"));
-			     	spread.setText(bar.getString("location_detail_id"));
-					 measures.setText(bar.getString("manager_id"));
+					barname.setText(bar.getString("bar_name"));
+					price.setText(bar.getString("price")+"￥/h");
+					place.setText(bar.getString("location_name")+bar.getString("location_detail"));
+					goodbads.setText("赞："+bar.getString("good")+"踩："+bar.getString("bad"));
+					cpu.setText("CPU配置："+bar.getString("CPU"));
+					gpu.setText("GPU配置："+bar.getString("GPU"));
+					ssd.setText("SSD配置："+bar.getString("SSD"));
 				//	 tupian.setImageURI("http://192.168.191.1/image/sick/"+jsonObj.getString("img")+".png");
 				 
 				} catch (Exception e) {

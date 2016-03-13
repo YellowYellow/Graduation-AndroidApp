@@ -27,11 +27,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Bundle;   
+import android.os.Bundle;
+import android.os.Handler;
+import android.support.v4.os.TraceCompat;
 import android.support.v4.util.LruCache;
 import android.view.LayoutInflater; 
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -39,12 +46,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class Plant_list extends Activity{
-	 
+
+
 	private ListView mListView;
 	private EfficientAdapter mAdapter;
 	private ProgressDialog mProgress;
 	private List<DataModel> mDataList;
-	
+	private int fadeInDuration = 3000;
+	private Animation fadeIn = new AlphaAnimation(0, 1);
+
 	private class DataModel {
 		private String mImageUrl;
 		private String mId;
@@ -148,6 +158,11 @@ public class Plant_list extends Activity{
 		setContentView(R.layout.plant_search);
 		
 		mVolleyQueue = Volley.newRequestQueue(this);
+
+	    fadeIn.setInterpolator(new DecelerateInterpolator()); // add this
+	    fadeIn.setDuration(fadeInDuration);
+
+
 
 		int max_cache_size = 1000000;
 	 	
@@ -297,6 +312,7 @@ public class Plant_list extends Activity{
       }
 
       public View getView(int position, View convertView, ViewGroup parent) {
+
           ViewHolder holder;
           if (convertView == null) {
               convertView = mInflater.inflate(R.layout.plant_list, null);
@@ -315,12 +331,18 @@ public class Plant_list extends Activity{
           holder.infor.setText(mDataList.get(position).getcomment());
 		  holder.place.setText(mDataList.get(position).getplace());
 		  holder.goodbad.setText("赞: " + mDataList.get(position).getGood() + "  踩: " + mDataList.get(position).getmBad());
-          
-         Bundle para = new Bundle();
-          para.putString("id",mDataList.get(position).getmId());
+
+		  AnimationSet animation = new AnimationSet(false); // change to false
+		  animation.addAnimation(fadeIn);
+		  animation.setRepeatCount(1);
+
+		  Bundle para = new Bundle();
+          para.putString("id", mDataList.get(position).getmId());
           final Intent i = new Intent(Plant_list.this,Sick_detail.class);
-          i.putExtras(para); 
-  
+          i.putExtras(para);
+
+
+		  holder.image.setAnimation(animation);
           holder.name.setOnClickListener(new View.OnClickListener() { 
   			@Override
   			public void onClick(View v) { 
