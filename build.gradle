@@ -1,5 +1,12 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
+
+ext {
+    sdkVersion = 21
+    sdkVersionName = '2.0.1'
+}
+
+
 buildscript {
     repositories {
         jcenter()

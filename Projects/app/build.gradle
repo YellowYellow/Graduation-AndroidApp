@@ -1,0 +1,41 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
+
+    defaultConfig {
+        applicationId "com.snailgame.test"
+        minSdkVersion 19
+       targetSdkVersion 23
+        versionCode rootProject.ext.sdkVersion
+        versionName rootProject.ext.sdkVersionName
+    }
+    signingConfigs{
+        release {
+            storeFile file("demokey.keystore")
+            storePassword "123456"
+            keyAlias "demokey.keystore"
+            keyPassword "123456"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
+            signingConfig signingConfigs.release
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:design:23.1.1'
+    compile files('libs/httpmime-4.2.5.jar')
+    compile files('libs/gson-2.2.2.jar')
+    compile files('libs/volley.jar')
+    compile project(':ShortMessageSDKGUI')
+}

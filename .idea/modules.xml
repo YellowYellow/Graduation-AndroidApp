@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Graduate.iml" filepath="$PROJECT_DIR$/Graduate.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Projects/SMSSDK/SMSSDK.iml" filepath="$PROJECT_DIR$/Projects/SMSSDK/SMSSDK.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Projects/ShortMessageSDKGUI/ShortMessageSDKGUI.iml" filepath="$PROJECT_DIR$/Projects/ShortMessageSDKGUI/ShortMessageSDKGUI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Projects/app/app.iml" filepath="$PROJECT_DIR$/Projects/app/app.iml" />
     </modules>
   </component>
 </project>

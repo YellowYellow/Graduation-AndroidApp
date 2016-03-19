@@ -1,1 +1,4 @@
-include ':app'
+include ':SMSSDK', ':ShortMessageSDKGUI', ":app"
+project(':SMSSDK').projectDir = new File('Projects/SMSSDK')
+project(':ShortMessageSDKGUI').projectDir = new File('Projects/ShortMessageSDKGUI')
+project(':app').projectDir = new File('Projects/app')
