@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Plant_list"
+            android:name=".Bar_list"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
 
@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Sick_detail"
+            android:name=".Bar_detail"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
