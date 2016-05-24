@@ -19,6 +19,8 @@ import android.content.Intent;
 	import android.os.Bundle;   
 	import android.support.v4.util.LruCache;
 	import android.view.View;
+	import android.webkit.WebSettings;
+	import android.webkit.WebView;
 	import android.widget.Button;
 	import android.widget.TextView;
 import android.widget.Toast;
@@ -33,7 +35,7 @@ public class Bar_detail extends Activity{
 	    public RequestQueue mVolleyQueue;
 		
 	    public ImageLoader mImageLoader; 
-		private String name;
+		private String id;
 		 
 	  @Override
 	  protected void onCreate(Bundle savedInstanceState)
@@ -41,21 +43,32 @@ public class Bar_detail extends Activity{
 		    super.onCreate(savedInstanceState);
 			setContentView(R.layout.bar_detail);
 
-		  	Button order = (Button)findViewById(R.id.order);
+		  Intent intent=getIntent();
+		  id=intent.getStringExtra("id");
+
+		  WebView comments = (WebView)findViewById(R.id.webViewcomment);
+
+		  comments.setWebChromeClient(new MyWebChromeClient());
+
+		  WebSettings settings = comments.getSettings();
+		  settings.setJavaScriptEnabled(true);
+		  comments.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+		  comments.getSettings().setLoadWithOverviewMode(true);
+
+		  comments.loadUrl("http://121.42.191.9:8088/Graduation-Project/Netbar/index.php/Main/commentmobile?id=" + id);
+
+		  Button order = (Button)findViewById(R.id.order);
 		  	order.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
 
 					Bundle para = new Bundle();
-					para.putString("id",name);
+					para.putString("id",id);
 					Intent i = new Intent(Bar_detail.this,ChairMapActivity.class);
 					i.putExtras(para);
 					startActivity(i);
 				}
 			});
-
-			Intent intent=getIntent();  
-	        name=intent.getStringExtra("id");
 			
 			mVolleyQueue = Volley.newRequestQueue(this);
 
@@ -140,6 +153,8 @@ public class Bar_detail extends Activity{
 					gpu.setText("GPU配置："+bar.getString("GPU"));
 					ssd.setText("SSD配置："+bar.getString("SSD"));
 					lianzuo.setText("五连座："+bar.getString("five")+"四连座："+bar.getString("for")+"三连座："+bar.getString("three")+"两连座："+bar.getString("two"));
+
+
 				//	 tupian.setImageURI("http://192.168.191.1/image/sick/"+jsonObj.getString("img")+".png");
 				 
 				} catch (Exception e) {
@@ -150,7 +165,7 @@ public class Bar_detail extends Activity{
 		
 	  private void makeSampleHttpRequest() {
 			
-			String url = "http://121.42.191.9:8088/Graduation-Project/Netbar/index.php/MyNetBar/getBardetail?id=" + name;
+			String url = "http://121.42.191.9:8088/Graduation-Project/Netbar/index.php/MyNetBar/getBardetail?id=" + id;
 
 			JSONObject jsonObject = new JSONObject();
 			jsonObjRequest = new JsonObjectRequest(url, jsonObject, new Response.Listener<JSONObject>() {
