@@ -50,6 +50,12 @@
             android:textColor="@color/black" />
 
         <TextView
+            android:id="@+id/lianzuo"
+            android:layout_width="fill_parent"
+            android:layout_height="35dp"
+            android:textColor="@color/red" />
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="15dp"
             android:textSize="10sp"

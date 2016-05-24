@@ -330,6 +330,7 @@ public class Bar_list extends Activity{
 		  animation.addAnimation(fadeIn);
 		  animation.setRepeatCount(1);
 
+
 		  Bundle para = new Bundle();
           para.putString("id", mDataList.get(position).getmId());
           final Intent i = new Intent(Bar_list.this,Bar_detail.class);

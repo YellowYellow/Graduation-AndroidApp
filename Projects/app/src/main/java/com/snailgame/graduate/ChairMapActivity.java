@@ -1,6 +1,7 @@
 package com.snailgame.graduate;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,10 +16,15 @@ import com.snailgame.graduate.R;
 
 public class ChairMapActivity extends AppCompatActivity {
 
+    private String id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chairmap);
+
+        Intent intent=getIntent();
+        id=intent.getStringExtra("id");
 
         WebView chairs = (WebView)findViewById(R.id.webView);
 
@@ -27,7 +33,7 @@ public class ChairMapActivity extends AppCompatActivity {
         WebSettings settings = chairs.getSettings();
         settings.setJavaScriptEnabled(true);
 
-        chairs.loadUrl("http://121.42.191.9:8088/Graduation-Project/Netbar/index.php/Main/mobile");
+        chairs.loadUrl("http://121.42.191.9:8088/Graduation-Project/Netbar/index.php/Main/mobile?id="+id);
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 

@@ -45,7 +45,12 @@ public class Bar_detail extends Activity{
 		  	order.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					startActivity(new Intent(Bar_detail.this,ChairMapActivity.class));
+
+					Bundle para = new Bundle();
+					para.putString("id",name);
+					Intent i = new Intent(Bar_detail.this,ChairMapActivity.class);
+					i.putExtras(para);
+					startActivity(i);
 				}
 			});
 
@@ -123,6 +128,7 @@ public class Bar_detail extends Activity{
 					TextView ssd = (TextView)findViewById(R.id.ssd);
 					TextView price = (TextView)findViewById(R.id.price);
 					TextView place = (TextView)findViewById(R.id.place);
+					TextView lianzuo = (TextView)findViewById(R.id.lianzuo);
 					// ImageView tupian = (ImageView)findViewById(R.id.imageView1);
 
 
@@ -133,6 +139,7 @@ public class Bar_detail extends Activity{
 					cpu.setText("CPU配置："+bar.getString("CPU"));
 					gpu.setText("GPU配置："+bar.getString("GPU"));
 					ssd.setText("SSD配置："+bar.getString("SSD"));
+					lianzuo.setText("五连座："+bar.getString("five")+"四连座："+bar.getString("for")+"三连座："+bar.getString("three")+"两连座："+bar.getString("two"));
 				//	 tupian.setImageURI("http://192.168.191.1/image/sick/"+jsonObj.getString("img")+".png");
 				 
 				} catch (Exception e) {
